@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.up.pokedex.adapters.PokeAdapter
+import br.com.up.pokedex.network.PokeApi
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,5 +21,10 @@ class MainActivity : AppCompatActivity() {
 
 
         recyclerPokemon.adapter = PokeAdapter(listOf())
+
+        PokeApi().pokemons { pokemons ->
+
+
+        }
     }
 }
