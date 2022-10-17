@@ -1,5 +1,6 @@
 package br.com.up.pokedex.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +11,22 @@ import br.com.up.pokedex.extensions.id
 import br.com.up.pokedex.models.Pokemon
 import com.squareup.picasso.Picasso
 
-class PokeAdapter(val pokeList:List<Pokemon>) :
+class PokeAdapter(private val pokeList:List<Pokemon>,
+                  private val callback:(pokemon:Pokemon) -> Unit) :
     RecyclerView.Adapter<PokeAdapter.PokeViewHolder>() {
 
     inner class PokeViewHolder(item:View) :
-        RecyclerView.ViewHolder(item)
+        RecyclerView.ViewHolder(item){
+
+            init {
+                item.setOnClickListener {
+
+                    val position = adapterPosition
+                    val pokemon = pokeList[position]
+                    callback(pokemon)
+                }
+            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokeViewHolder {
 
