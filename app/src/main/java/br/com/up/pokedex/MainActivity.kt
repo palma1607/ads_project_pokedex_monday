@@ -19,12 +19,14 @@ class MainActivity : AppCompatActivity() {
         recyclerPokemon.layoutManager =
             GridLayoutManager(this, 2)
 
-
-        recyclerPokemon.adapter = PokeAdapter(listOf())
-
         PokeApi().pokemons { pokemons ->
 
-
+            if(pokemons != null){
+                recyclerPokemon.adapter = PokeAdapter(pokemons)
+            }
+            else{
+                // TODO implements error
+            }
         }
     }
 }
